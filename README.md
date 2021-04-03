@@ -7,4 +7,4 @@ I just thought that is better to just add all my prototypes in here than just ad
 ---
 
 With the prototype 5 almost complete, next goal, complete the challenge 5 and lab 5(but in a few days).
-The prototype and challenged 5 complete, it wasn't is a few days in a d a y. Great ^^
+The prototype and challenged 5 complete, it only take a day. Great ^^
