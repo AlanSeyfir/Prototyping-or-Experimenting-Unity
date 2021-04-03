@@ -9,21 +9,18 @@ public class GameManager : MonoBehaviour
     public List<GameObject> targets;
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI gameOverText;
+    public GameObject titleScreen;
     public Button restartBtn;
     public bool isGameActive;
     private int score;
-    private float spawnRate = 1.0f;
+    private float spawnRate = 2.0f;
     
     // Start is called before the first frame update
     void Start()
     {
-        isGameActive = true;
-        score = 0;
-        
-        StartCoroutine("SpawnTargets");
-        UpdateScore(0);
-        
-        
+        //For some reason I need to reference the gameObject "Game Manager" instead of the Game Manager script on the
+        //On Click() for the buttons to pass the values. The gameObject passes all the methods and the script only
+        //the monodevelop....huh
     }
 
     // Update is called once per frame
@@ -45,6 +42,21 @@ public class GameManager : MonoBehaviour
         }
         
     }
+    
+    //Start difficulty and the game, I see that is easier and simple to make it this way, intead of making a new script (I mean the DifficultyButton.cs)
+    public void StartGame(int difficulty)
+    {
+        Debug.Log("Set difficulty to: " + difficulty.ToString());
+        //Adding false if I click the difficulty will disappear and to start playing
+        titleScreen.gameObject.SetActive(false);
+        //Divide the difficulty to make the spawnRate faster
+        spawnRate /= difficulty;
+        isGameActive = true;
+        score = 0;
+        
+        StartCoroutine("SpawnTargets");
+        UpdateScore(0);
+    }
 
     public void UpdateScore(int scoreToAdd)
     {
@@ -64,4 +76,16 @@ public class GameManager : MonoBehaviour
         //Get the current scene and assign this method for the button to restart the game/scene 
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
+
+    /*public void StartGame(int difficulty)
+    {
+        isGameActive = true;
+        score = 0;
+        spawnRate /= difficulty;
+        
+        StartCoroutine("SpawnTargets");
+        UpdateScore(0);
+        
+        titleScreen.gameObject.SetActive(false);
+    }*/
 }
